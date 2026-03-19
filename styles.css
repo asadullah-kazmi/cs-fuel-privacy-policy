@@ -48,7 +48,7 @@ body {
       rgba(255, 73, 0, 0) 34%
     ),
     var(--background);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .container {
@@ -225,7 +225,7 @@ h1 {
 }
 
 .hero-meta {
-  margin-top: 1.2rem;
+  margin-top: 1.35rem;
   display: grid;
   gap: 0.8rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -258,16 +258,32 @@ h1 {
 
 .content-shell {
   display: grid;
-  gap: 1rem;
-  padding-bottom: 2.2rem;
+  gap: 1.15rem;
+  padding-bottom: 2.4rem;
 }
 
 .policy-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: clamp(1rem, 0.95rem + 1vw, 1.55rem);
+  padding: clamp(1.05rem, 0.98rem + 1.1vw, 1.7rem);
   box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.policy-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 105, 0, 0.55),
+    rgba(255, 73, 0, 0.18)
+  );
 }
 
 .policy-card h2 {
@@ -282,12 +298,12 @@ h1 {
 }
 
 .policy-card p {
-  margin: 0.45rem 0 0.8rem;
+  margin: 0.5rem 0 0.9rem;
   color: #1a1a1a;
 }
 
 .policy-card ul {
-  margin: 0.45rem 0 0.8rem;
+  margin: 0.52rem 0 0.9rem;
   padding-left: 1.2rem;
 }
 
@@ -307,6 +323,15 @@ table {
   width: 100%;
   min-width: 530px;
   background: #fff;
+}
+
+caption {
+  text-align: left;
+  padding: 0.72rem;
+  color: var(--text-secondary);
+  background: #fff;
+  border-bottom: 1px solid var(--divider);
+  font-size: 0.9rem;
 }
 
 th,
@@ -339,6 +364,27 @@ td {
 
 .footer-inner p {
   margin: 0.2rem 0;
+}
+
+.footer-policy-meta {
+  margin: 0.3rem 0 0.45rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.2rem;
+}
+
+.footer-policy-meta p {
+  margin: 0;
+}
+
+.footer-meta-label {
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.footer-meta-value {
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 :focus-visible {
@@ -406,15 +452,33 @@ td {
   }
 
   .content-shell {
-    gap: 0.8rem;
+    gap: 0.9rem;
   }
 
   .policy-card {
     border-radius: 16px;
+    padding: 1rem;
+  }
+
+  .policy-card h2 {
+    font-size: 1.18rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .policy-card p,
+  .policy-card li,
+  td,
+  th {
+    font-size: 0.96rem;
   }
 
   table {
     min-width: 460px;
+  }
+
+  .footer-policy-meta {
+    flex-direction: column;
+    gap: 0.2rem;
   }
 }
 
