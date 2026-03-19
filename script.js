@@ -2,9 +2,10 @@ const navToggle = document.querySelector(".nav-toggle");
 const navList = document.querySelector("#nav-list");
 const navLinks = [...document.querySelectorAll("#nav-list a")];
 const reveals = [...document.querySelectorAll(".reveal")];
-const reducedMotion = window.matchMedia(
+const reducedMotionQuery = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
-).matches;
+);
+let reducedMotion = reducedMotionQuery.matches;
 
 const yearEl = document.querySelector("#year");
 const effectiveDateEl = document.querySelector("#effective-date");
@@ -73,11 +74,23 @@ const setActiveNavLink = () => {
     link.classList.toggle("active", Boolean(isActive));
     if (isActive) {
       link.setAttribute("aria-current", "location");
+      if (!navList.classList.contains("open")) {
+        link.scrollIntoView({ inline: "nearest", block: "nearest" });
+      }
     } else {
       link.removeAttribute("aria-current");
     }
   });
 };
+
+if (typeof reducedMotionQuery.addEventListener === "function") {
+  reducedMotionQuery.addEventListener("change", (event) => {
+    reducedMotion = event.matches;
+    if (reducedMotion) {
+      reveals.forEach((node) => node.classList.add("is-visible"));
+    }
+  });
+}
 
 if (reducedMotion) {
   reveals.forEach((node) => node.classList.add("is-visible"));
